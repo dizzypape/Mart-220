@@ -36,6 +36,8 @@ var greeny3 = 310;
 var grapeMovement1 = Math.floor(Math.random() * (Math.floor(Math.random() * 2)) + 1);
 var grapeMovement2 = Math.floor(Math.random() * (Math.floor(Math.random() * 4)) + 1);
 var grapeMovement3 = Math.floor(Math.random() * (Math.floor(Math.random() * 6)) + 1);
+
+//purple grape movements
 var purplex1 = 170;
 var purpley1 = 300;
 var purplex2 = 150;
