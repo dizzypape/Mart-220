@@ -57,7 +57,6 @@ var grapeMovement6 = Math.floor(Math.random() * (Math.floor(Math.random() * 6)) 
 
 //timer var
 var timer = 8;
-var allMovement = 0;
 
 function preload()
 {
