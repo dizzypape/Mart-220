@@ -274,24 +274,3 @@ function grapeMovement()
     purplex3 += grapeMovement6;
 }
 
-/*
-function arrayMandarine()
-{
-    var mandX = random(75,325);
-    var mandY = random(215,325);
-    var mandW = 55;
-    var mandH = 43;
-    for(var t = 0; t < 2; t++)
-    {
-        mandarineX [t] = mandX;
-        mandarineY [t] = mandY;
-        mandarineW [t] = mandW;
-        mandarineH [t] = mandH;
-        mandX += 240;
-        mandY += 315;
-        mandW += 55;
-        mandH += 43;
-
-    }
-}
-*/
