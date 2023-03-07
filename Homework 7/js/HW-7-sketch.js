@@ -71,6 +71,13 @@ var runAnimation;
 var runAnimation;
 var idleSally;
 var runSally;
+var eat = false;
+
+//sound var
+var ateGood;
+var ateBad;
+var chomp;
+var backgroundFruit;
 
 function preload()
 {
@@ -83,6 +90,14 @@ function preload()
     idleAnimation = loadStrings("./images/idle/idle.txt");
     
     runAnimation = loadStrings("./images/run/run.txt");
+
+    backgroundFruit = loadSound("./music/backgroundfruit.wav")
+
+    ateGood = loadSound("./music/ategood.wav");
+
+    ateBad = loadSound("./music/atebad.wav");
+
+    chomp = loadSound("./music/chomp.wav");
 }
 
 function setup() 
@@ -108,6 +123,8 @@ function setup()
   function draw() 
 {
     background(172, 202, 234);
+
+    //text(eat, 100,20);
 
 //raindrops
     image(rainimg, 20, rainy);
@@ -217,9 +234,19 @@ function setup()
 
     moveSallymove();
 
-
+    backgroundMusic();
     //objectSally.draw(i);
     
+}
+
+
+
+function backgroundMusic()
+{
+    backgroundFruit.play();
+    backgroundFruit.loop();
+    backgroundFruit.setVolume(0.6);
+    mouseClicked();
 }
 
 function moveSallymove()
@@ -229,6 +256,7 @@ function moveSallymove()
         if(key == 'd')
         {
             runSally.draw(i);
+            //eat = runAnimation.checkCollision();
             runSally.setX(runSally.getX()+5);
             idleSally.setX(idleSally.getX()+5);
         } 
