@@ -234,8 +234,12 @@ function setup()
 
     moveSallymove();
 
-    backgroundMusic();
+    if(keyIsPressed)
+    {
+        backgroundMusic();
 
+    }
+   
     //objectSally.draw(i);
     
 }
