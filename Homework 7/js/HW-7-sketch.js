@@ -91,7 +91,7 @@ function preload()
     
     runAnimation = loadStrings("./images/run/run.txt");
 
-    backgroundFruit = loadSound("./music/backgroundfruit.wav")
+    backgroundFruit = loadSound("./music/backgroundfruit4.0.mp3")
 
     ateGood = loadSound("./music/ategood.wav");
 
@@ -104,7 +104,7 @@ function setup()
 {
     createCanvas(400, 400);
 
-    setInterval(timerDisplay, 100);
+    setInterval(timerDisplay, 50);
 
 //adventurer sally
     idleSally = new sally(idleAnimation, 10, 315, 69.333, 75.667);
@@ -235,19 +235,11 @@ function setup()
     moveSallymove();
 
     backgroundMusic();
+
     //objectSally.draw(i);
     
 }
 
-
-
-function backgroundMusic()
-{
-    backgroundFruit.play();
-    backgroundFruit.loop();
-    backgroundFruit.setVolume(0.6);
-    mouseClicked();
-}
 
 function moveSallymove()
 {
@@ -348,3 +340,18 @@ function grapeMovement()
     purplex3 += grapeMovement6;
 }
 
+
+function backgroundMusic()
+{
+    backgroundFruit.play();
+    backgroundFruit.loop();
+    backgroundFruit.setVolume(0.1);
+}
+
+/*function mouseClicked()
+{
+    backgroundFruit.play();
+    backgroundFruit.loop();
+    backgroundFruit.setVolume(0.3);
+}
+*/
