@@ -46,10 +46,10 @@ class sally
         }
     }
 
-    //checkCollision()
-    //{
-    //    collideRectCircle(this.x,this.y,this.w,this.h,mandarineOrange);
-    //}
+    checkCollision()
+    {
+        collideRectCircle(this.x,this.y,this.w,this.h,mandarineOrange);
+    }
 
 
 }

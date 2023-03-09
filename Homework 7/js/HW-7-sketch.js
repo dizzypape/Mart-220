@@ -91,7 +91,7 @@ function preload()
     
     runAnimation = loadStrings("./images/run/run.txt");
 
-    backgroundFruit = loadSound("./music/backgroundfruit4.0.mp3")
+    backgroundFruit = loadSound("./music/backgroundfruit.mp3")
 
     ateGood = loadSound("./music/ategood.wav");
 
@@ -252,7 +252,7 @@ function moveSallymove()
         if(key == 'd')
         {
             runSally.draw(i);
-            //eat = runAnimation.checkCollision();
+            eat = runAnimation.checkCollision();
             runSally.setX(runSally.getX()+5);
             idleSally.setX(idleSally.getX()+5);
         } 
@@ -347,15 +347,12 @@ function grapeMovement()
 
 function backgroundMusic()
 {
-    backgroundFruit.play();
-    backgroundFruit.loop();
-    backgroundFruit.setVolume(0.1);
+if(!backgroundFruit.isPlaying())
+    {
+        //backgroundFruit.play();
+        backgroundFruit.loop();
+        backgroundFruit.setVolume(0.6);
+    }
+    
 }
 
-/*function mouseClicked()
-{
-    backgroundFruit.play();
-    backgroundFruit.loop();
-    backgroundFruit.setVolume(0.3);
-}
-*/
