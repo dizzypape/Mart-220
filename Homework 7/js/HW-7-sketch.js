@@ -26,12 +26,9 @@ var four = 100;
 var six = 102;
 
 //seeds vars
-var seedx1 = 255;
-var seedy1 = 265;
-var seedx2 = 270;
-var seedy2 = 285;
-var seedx3 = 235;
-var seedy3 = 280;
+var watSeeds;
+var watSeeds2;
+var watSeeds3;
 
 // green grape movements
 var greenx1 = 170;
@@ -58,6 +55,9 @@ var grapeMovement6 = Math.floor(Math.random() * (Math.floor(Math.random() * 6)) 
 //mandarine orange
 var mandarineOrange;
 
+//pineapple
+var pineApple;
+
 //timer var
 var timer = 0;
 
@@ -72,6 +72,7 @@ var runAnimation;
 var idleSally;
 var runSally;
 var eat = false;
+var throwup = false;
 
 //sound var
 var ateGood;
@@ -93,7 +94,7 @@ function preload()
 
     backgroundFruit = loadSound("./music/backgroundfruit.mp3")
 
-    ateGood = loadSound("./music/ategood.wav");
+    ateGood = loadSound("./music/ategood.mp3");
 
     ateBad = loadSound("./music/atebad.wav");
 
@@ -113,18 +114,26 @@ function setup()
     runSally = new sally(runAnimation, 10,315, 69.333, 75.667);
     runSally.animate();
 
-
   //mandarine orange
-    mandarineOrange = new mandarine(315,325,55,43,221,187,130);
-
+    mandarineOrange = new mandarine(315,325,55,221,187,130);
     mandarineOrange.randomOrange();
+
+  //seeds
+    watSeeds = new seeds(255,265,6,44,100,43);
+    watSeeds2 = new seeds(275,285,6,44,43,43);
+    watSeeds3 = new seeds(280,270,6,44,43,43);
+    watSeeds.randomSeed();
+    watSeeds2.randomSeed();
+    watSeeds3.randomSeed();
+
+    
 }
 
   function draw() 
 {
     background(172, 202, 234);
 
-    //text(eat, 100,20);
+    
 
 //raindrops
     image(rainimg, 20, rainy);
@@ -166,84 +175,51 @@ function setup()
     ellipse(greenx2, greeny2, 30, 20);
     ellipse(greenx3, greeny3, 30, 20);
 
-//timer
-//    drawTimer();
-
-//grape movement
-    grapeMovement();
-
-
 //pineapple
     fill(209, 211, 160);
     triangle(170, 275, 210, 250, 225, 275);
     triangle(155, 285, 155, 255, 195, 280);
     triangle(103, 285, 148, 253, 153, 290);
 
+//timer
+//    drawTimer();
+
+//grape movement
+    grapeMovement();
+
 //watermelon
     fill(195, 127, 161);
     triangle(200, 290, 260, 240, 290, 300);
-        //moving seeds
-            //right seed
-        if(keyIsDown (up))
-        {
-            seedy3 -= 5;
-        }
-        if(keyIsDown (down))
-        {
-            seedy3 += 5;
-        }
-        if(keyIsDown (left))
-        {
-            seedx3 -=5;
-        }
-        if(keyIsDown (right))
-        {
-            seedx3 += 5;
-        }
-
-            //left seed
-        if(keyIsDown (eight))
-        {
-            seedy2 -= 5;
-        }
-        if(keyIsDown (five))
-        {
-            seedy2 += 5;
-        }
-        if(keyIsDown (four))
-        {
-            seedx2 -=5;
-        }
-        if(keyIsDown (six))
-        {
-            seedx2 += 5;
-        }
-
-
-    //seeds
-    fill(44, 43, 43);
-    ellipse(seedx1, seedy1, 7.5, 5);
-    ellipse(seedx2, seedy2, 7.5, 5);
-    ellipse(seedx3, seedy3, 7.5, 5);
 
 //mandarine
     mandarineOrange.draw();
-    
+
+//seeds
+    watSeeds.draw();
+    watSeeds2.draw();
+    watSeeds3.draw();
 
 //Adventure Girl Sally
 
     moveSallymove();
+
+    if(runSally.checkCollision(mandarineOrange))
+    {
+        goodFood();
+    }
+
+    if(runSally.chkCollision2(watSeeds))
+    {
+        badFood();
+    }
 
     if(keyIsPressed)
     {
         backgroundMusic();
 
     }
-   
-    //objectSally.draw(i);
     
 }
-
 
 function moveSallymove()
 {
@@ -252,7 +228,6 @@ function moveSallymove()
         if(key == 'd')
         {
             runSally.draw(i);
-            eat = runAnimation.checkCollision();
             runSally.setX(runSally.getX()+5);
             idleSally.setX(idleSally.getX()+5);
         } 
@@ -347,12 +322,34 @@ function grapeMovement()
 
 function backgroundMusic()
 {
-if(!backgroundFruit.isPlaying())
+    if(!backgroundFruit.isPlaying())
     {
         //backgroundFruit.play();
         backgroundFruit.loop();
         backgroundFruit.setVolume(0.6);
     }
-    
 }
+
+function goodFood()
+{
+        chomp.play();
+        chomp.setLoop(false);
+        ateGood.play();
+        ateGood.setLoop(false);
+        mandarineOrange = new mandarine(450,325,55,221,187,130);
+}
+
+function badFood()
+{
+    ateBad.play();
+    ateBad.setLoop(false);
+    chomp.play();
+    chomp.setLoop(false);
+    watSeeds = new seeds(420,265,6,44,43,43);
+}
+    
+
+
+    
+
 

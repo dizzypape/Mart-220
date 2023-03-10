@@ -46,10 +46,16 @@ class sally
         }
     }
 
-    checkCollision()
-    {
-        collideRectCircle(this.x,this.y,this.w,this.h,mandarineOrange);
-    }
+    checkCollision(mandarineOrange)
+        {
+            return collideRectCircle(this.x, this.y, this.w, this.h, 
+            mandarineOrange.getX(), mandarineOrange.getY(), mandarineOrange.getD());
+        }
 
-
+    chkCollision2(watSeeds)
+        {
+            return collideRectCircle(this.x, this.y, this.w, this.h,
+            watSeeds.getX1(), watSeeds.getY1(), watSeeds.getD1());
+        }
 }
+
