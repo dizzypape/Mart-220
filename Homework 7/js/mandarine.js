@@ -51,7 +51,7 @@ class mandarine
 
     randomOrange()
     {
-        this.mandX = random(90,this.mandX);
+        this.mandX = random(100,this.mandX);
         this.mandY = random(310,this.mandY);
     }
 }
