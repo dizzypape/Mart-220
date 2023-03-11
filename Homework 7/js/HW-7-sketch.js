@@ -26,9 +26,12 @@ var four = 100;
 var six = 102;
 
 //seeds vars
-var watSeeds;
-var watSeeds2;
-var watSeeds3;
+var watSeeds = -5;
+var watSeeds2 = 2;
+var watSeeds3 = 2;
+var watSeeds4 = 2;
+var watSeeds5 = 2;
+var watSeeds6 = 2;
 
 // green grape movements
 var greenx1 = 170;
@@ -53,13 +56,16 @@ var grapeMovement5 = Math.floor(Math.random() * (Math.floor(Math.random() * 8)) 
 var grapeMovement6 = Math.floor(Math.random() * (Math.floor(Math.random() * 6)) + 1);
 
 //mandarine orange
-var mandarineOrange;
+var mandarineOrange = 1;
 
 //pineapple
 var pineApple;
 
 //timer var
 var timer = 0;
+
+//point text
+var points = 0;
 
 //character var
 var character;
@@ -71,8 +77,6 @@ var runAnimation;
 var runAnimation;
 var idleSally;
 var runSally;
-var eat = false;
-var throwup = false;
 
 //sound var
 var ateGood;
@@ -119,23 +123,26 @@ function setup()
     mandarineOrange.randomOrange();
 
   //seeds
-    watSeeds = new seeds(255,265,6,44,100,43);
+    watSeeds = new seeds(255,265,6,245,245,220);
     watSeeds2 = new seeds(275,285,6,44,43,43);
     watSeeds3 = new seeds(280,270,6,44,43,43);
+    watSeeds4 = new seeds(260,270,6,44,43,43);
+    watSeeds5 = new seeds(265,270,6,44,43,43);
+    watSeeds6 = new seeds(270,270,6,44,43,43);
     watSeeds.randomSeed();
     watSeeds2.randomSeed();
     watSeeds3.randomSeed();
-
-    
+    watSeeds4.randomSeed();
+    watSeeds5.randomSeed();
+    watSeeds6.randomSeed();
 }
 
   function draw() 
 {
     background(172, 202, 234);
 
-    
-
 //raindrops
+
     image(rainimg, 20, rainy);
     image(rainimg, 170, rainy);
     image(rainimg, 320, rainy);
@@ -198,6 +205,9 @@ function setup()
     watSeeds.draw();
     watSeeds2.draw();
     watSeeds3.draw();
+    watSeeds4.draw();
+    watSeeds5.draw();
+    watSeeds6.draw();
 
 //Adventure Girl Sally
 
@@ -207,10 +217,35 @@ function setup()
     {
         goodFood();
     }
-
+    
     if(runSally.chkCollision2(watSeeds))
     {
         badFood();
+    }
+    
+    if(runSally.chkCollision3(watSeeds2))
+    {
+        doublePoints();
+    }
+    
+    if(runSally.chkCollision4(watSeeds3))
+    {
+        doublePointsv2();
+    }
+
+    if(runSally.chkCollision5(watSeeds4))
+    {
+        doublePointsv3();
+    }
+
+    if(runSally.chkCollision6(watSeeds5))
+    {
+        doublePointsv4();
+    }
+
+    if(runSally.chkCollision7(watSeeds6))
+    {
+        doublePointsv5();
     }
 
     if(keyIsPressed)
@@ -219,6 +254,10 @@ function setup()
 
     }
     
+//point txt
+    textSize(24);
+    text("Score:" + points, 125, 380);
+    endGame();
 }
 
 function moveSallymove()
@@ -332,11 +371,62 @@ function backgroundMusic()
 
 function goodFood()
 {
-        chomp.play();
-        chomp.setLoop(false);
-        ateGood.play();
-        ateGood.setLoop(false);
-        mandarineOrange = new mandarine(450,325,55,221,187,130);
+    chomp.play();
+    chomp.setLoop(false);
+    ateGood.play();
+    ateGood.setLoop(false);
+    mandarineOrange = new mandarine(450,325,55,221,187,130);
+    points += 1;
+}
+
+function doublePoints()
+{
+    chomp.play();
+    chomp.setLoop(false);
+    ateGood.play();
+    ateGood.setLoop(false);
+    watSeeds2 = new seeds(420,285,6,44,43,43);
+    points += 2;
+}
+
+function doublePointsv2()
+{
+    chomp.play();
+    chomp.setLoop(false);
+    ateGood.play();
+    ateGood.setLoop(false);
+    watSeeds3 = new seeds(420,270,6,44,43,43);
+    points += 2;
+}
+
+function doublePointsv3()
+{
+    chomp.play();
+    chomp.setLoop(false);
+    ateGood.play();
+    ateGood.setLoop(false);
+    watSeeds4 = new seeds(420,270,6,44,43,43);
+    points += 2;
+}
+
+function doublePointsv4()
+{
+    chomp.play();
+    chomp.setLoop(false);
+    ateGood.play();
+    ateGood.setLoop(false);
+    watSeeds5 = new seeds(420,270,6,44,43,43);
+    points += 2;
+}
+
+function doublePointsv5()
+{
+    chomp.play();
+    chomp.setLoop(false);
+    ateGood.play();
+    ateGood.setLoop(false);
+    watSeeds6 = new seeds(420,270,6,44,43,43);
+    points += 2;
 }
 
 function badFood()
@@ -345,11 +435,19 @@ function badFood()
     ateBad.setLoop(false);
     chomp.play();
     chomp.setLoop(false);
-    watSeeds = new seeds(420,265,6,44,43,43);
+    watSeeds = new seeds(420,265,6,245,245,220);
+    points -= 5;
 }
-    
 
-
-    
-
+function endGame()
+{
+    if(points >= 5)
+    {
+        fill(255);
+        circle(200,200,350);
+        fill(0);
+        textSize(44);
+        text("You Win!",75,200);
+    }
+}
 
