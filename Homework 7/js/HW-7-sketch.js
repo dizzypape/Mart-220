@@ -150,11 +150,14 @@ function setup()
 
 //name
     fill(63, 46, 46);
+    textSize(12);
+    text('(Try not to hit the white seed. Press "wasd" to move.)', 10,25);
     textFont(myFont);
     textSize(nametxt);
     text('Isabelle Pape', 275, 375);
     textSize(titletxt);
     text('Mourning Fruit', 50, 75);
+    
 
 
 //plate
@@ -229,7 +232,8 @@ function setup()
     
 //point txt
     textSize(24);
-    text("Score:" + points, 125, 380);
+    text('Score:' + points, 125, 380);
+    setCenter(200,200);
     endGame();
     lost();
 }
@@ -387,11 +391,17 @@ function endGame()
 {
     if(points >= 3)
     {
-        fill(255);
-        circle(200,200,350);
-        fill(0);
-        textSize(44);
-        text("You Win!",75,200);
+    stroke(105,105,105,250);
+    tint(255, 128);
+    fill(240,255,255,250);
+    polarPolygons(8,5,80,80);
+    fill(255,255,240,250);
+    polarTriangles(6,44,24);
+    fill(240,255,240,250);
+    polarEllipses(12,4,5,12);
+    fill(0);
+    textSize(36);
+    text('You Win!',-100,15);
     }
 }
 
@@ -399,11 +409,19 @@ function lost()
 {
     if(points < 0)
     {
-        fill(255);
-        circle(200,200,350);
-        fill(0);
-        textSize(44);
-        text("You Lose :(",65,200);
+    stroke(169,169,169,250);
+    tint(255, 128);
+    fill(240,248,255,250);
+    polarEllipses(12,50,50,100);
+    fill(176,196,222,250);
+    polarPentagons(10,40,55);
+    fill(112,128,144,250);
+    polarTriangles(8,24,20);
+    fill(245,255,250,250);
+    polarEllipses(6,6,6,8);
+    fill(0);
+    textSize(32);
+    text('You Lose :(',-100,15);
     }
 }
 
