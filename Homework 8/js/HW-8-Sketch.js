@@ -49,26 +49,26 @@ function setup()
     wrench[0] = createSprite(random(20,200),300,100,100,'d');
     wrench[0].img = "./images/wrench.png";
     wrench[0].scale = 0.10;
-    wrench[0].diameter = 5;
+    wrench[0].diameter = 50;
     wrench[0].rotationLock = true;
     wrench[0].bounciness = 1;
 
     wrench[1] = createSprite(random(300,500),300,100,100,'d');
     wrench[1].img = "./images/wrench.png";
     wrench[1].scale = 0.10;
-    wrench[1].diameter = 5;
+    wrench[1].diameter = 50;
     wrench[1].rotationLock = true;
     wrench[1].bounciness = 1;
 
     wrench[2] = createSprite(650,300,100,100,'d');
     wrench[2].img = "./images/wrench.png";
     wrench[2].scale = 0.10;
-    wrench[2].diameter = 5;
+    wrench[2].diameter = 50;
     wrench[2].rotationLock = true;
     wrench[2].bounciness = 1;
 
     robby = new robot(0, 0, 150, 150);
-    robby.diameter = 100;
+    robby.diameter = 150;
     robby.rotationLock = true;
     robby.loadAnimation('idle', idlePaths);
     robby.loadAnimation('walk', runPaths);
