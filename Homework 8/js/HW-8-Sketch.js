@@ -3,23 +3,18 @@ var robby;
 var idlePaths = [];
 var runRobby;
 var runPaths = [];
-var attackPaths = [];
 var gear = [];
-var oil = [];
+var oil;
 var healthBar = [];
 var i = 0;
 var points = 0;
 var wrench = [];
-var ground;
-const particles = [];
-var health = 100;
+var ground = rect(0,590,width,10,'s');
 
 function preload() 
 {
     idlePaths = loadStrings("./images/idle/idle.txt");
     runPaths = loadStrings("./images/run/run.txt");
-    attackPaths = loadStrings("./images/attack/attack.txt");
-
 }
 
 function setup()
@@ -45,36 +40,11 @@ function setup()
     gear[2].scale = 0.10;
     gear[2].diameter = 75;
 
-    oil[0] = createSprite(random(50, 140),random(400, 550), 100,100, 's');
-    oil[0].img = "./images/oilbarrel.jpg";
-    oil[0].scale = 0.10;
-    oil[0].diameter = 0.5;
-    oil[0].rotationLock = true;
-
-    oil[1] = createSprite(random(160, 250),random(300, 450), 100,100, 's');
-    oil[1].img = "./images/oilbarrel.jpg";
-    oil[1].scale = 0.10;
-    oil[1].diameter = 0.5;
-    oil[1].rotationLock = true;
-
-    oil[2] = createSprite(random(260, 350),random(200, 350), 100,100, 's');
-    oil[2].img = "./images/oilbarrel.jpg";
-    oil[2].scale = 0.10;
-    oil[2].diameter = 0.5;
-    oil[2].rotationLock = true;
-
-    oil[3] = createSprite(random(374, 550),random(100, 250), 100,100, 's');
-    oil[3].img = "./images/oilbarrel.jpg";
-    oil[3].scale = 0.10;
-    oil[3].diameter = 0.5;
-    oil[3].rotationLock = true;
-
-    oil[4] = createSprite(random(600, 790),random(50, 150), 100,100, 's');
-    oil[4].img = "./images/oilbarrel.jpg";
-    oil[4].scale = 0.10;
-    oil[4].diameter = 0.5;
-    oil[4].rotationLock = true;
-    
+    oil = createSprite(random(50, 200),random(400, 550), 100,100, 's');
+    oil.img = "./images/oilbarrel.jpg";
+    oil.scale = 0.10;
+    oil.diameter = 0.5;
+    oil.rotationLock = true;
 
     wrench[0] = createSprite(random(20,200),300,100,100,'d');
     wrench[0].img = "./images/wrench.png";
@@ -102,7 +72,6 @@ function setup()
     robby.rotationLock = true;
     robby.loadAnimation('idle', idlePaths);
     robby.loadAnimation('walk', runPaths);
-    robby.loadAnimation('attack',attackPaths);
 
     healthBar[i] = new healthbar(75,575,160,12,20,247,31);
 }
@@ -173,144 +142,19 @@ function draw()
             robby.updatePosition('idle');
         }
     }
-    else if(kb.pressing('x'))
-    {
-        robby.drawAnimation('attack');
-
-      if(oil[0] != null)
-        {
-        if (dist(robby.getCurrentAnimation().position.x, robby.getCurrentAnimation().position.y, oil[0].position.x, oil[0].position.y) < 100) 
-            {
-                createParticles(oil[0].position.x, oil[0].position.y);
-                health -= 5;
-                if (health <= 0)
-                {
-                    oil[0].remove();
-                    oil[0] = null;
-                    points += 2;
-                    healthBar[i].w += 10;
-                }
-                
-            }
-        }
-
-        if(oil[1] != null)
-        {
-        if (dist(robby.getCurrentAnimation().position.x, robby.getCurrentAnimation().position.y, oil[1].position.x, oil[1].position.y) < 100) 
-            {
-                createParticles(oil[1].position.x, oil[1].position.y);
-                health -= 5;
-                if (health <= 0)
-                {
-                    oil[1].remove();
-                    oil[1] = null;
-                    points += 2;
-                    healthBar[i].w += 10;
-                }
-                
-            }
-        }
-
-        if(oil[2] != null)
-        {
-        if (dist(robby.getCurrentAnimation().position.x, robby.getCurrentAnimation().position.y, oil[2].position.x, oil[2].position.y) < 100) 
-            {
-                createParticles(oil[2].position.x, oil[2].position.y);
-                health -= 5;
-                if (health <= 0)
-                {
-                    oil[2].remove();
-                    oil[2] = null;
-                    points += 2;
-                    healthBar[i].w += 10;
-                }
-                
-            }
-        }
-
-        if(oil[3] != null)
-        {
-        if (dist(robby.getCurrentAnimation().position.x, robby.getCurrentAnimation().position.y, oil[3].position.x, oil[3].position.y) < 100) 
-            {
-                createParticles(oil[3].position.x, oil[3].position.y);
-                health -= 5;
-                if (health <= 0)
-                {
-                    oil[3].remove();
-                    oil[3] = null;
-                    points += 2;
-                    healthBar[i].w += 10;
-                }
-                
-            }
-        }
-        
-        if(oil[4] != null)
-        {
-        if (dist(robby.getCurrentAnimation().position.x, robby.getCurrentAnimation().position.y, oil[4].position.x, oil[4].position.y) < 100) 
-            {
-                createParticles(oil[4].position.x, oil[4].position.y);
-                health -= 5;
-                if (health <= 0)
-                {
-                    oil[4].remove();
-                    oil[4] = null;
-                    points += 2;
-                    healthBar[i].w += 10;
-                }
-                
-            }
-        }
-    }
     
     else
     {
         robby.drawAnimation('idle');
     }   
+
+    gear.debug = mouseIsPressed;
     
-    if(oil[0] != null)
+    if(robby.isColliding(oil))
     {
-    if(robby.isColliding(oil[0]))
-    {
-        robby.drawAnimation('idle');
-        robby.updatePosition('idle');      
-    }
-    }
-
-    if(oil[1] != null)
-    {
-    if(robby.isColliding(oil[1]))
-    {
-        robby.drawAnimation('idle');
-        robby.updatePosition('idle');      
-    }
-    }
-
-    if(oil[2] != null)
-    {
-    if(robby.isColliding(oil[2]))
-    {
-        robby.drawAnimation('idle');
-        robby.updatePosition('idle');      
-    }
-    }
-
-    if(oil[3] != null)
-    {
-    if(robby.isColliding(oil[3]))
-    {
-        robby.drawAnimation('idle');
-        robby.updatePosition('idle');      
-    }
-    }
-
-    if(oil[4] != null)
-    {
-    if(robby.isColliding(oil[4]))
-    {
-        robby.drawAnimation('idle');
-        robby.updatePosition('idle');      
-    }
+        oil.pos = {x: random(50, 750), y: random(50, 550)};
+        points += 2;
+        healthBar[i].w += 10;       
     }
 
     if(robby.isColliding(wrench[0]))
@@ -366,22 +210,4 @@ function createBoarder()
     rect(0,0,10,height);
     //right
     rect(790,0,10,height);
-}
-
-function createParticles(x,y)
-{
-    for (let i = 0; i < 5; i++) 
-    {
-        let p = new Particle(x,y);
-        particles.push(p);
-    }
-    for (let i = particles.length - 1; i >= 0; i--) 
-    {
-        particles[i].update();
-        particles[i].show();
-        if (particles[i].finished()) 
-        {
-            particles.splice(i, 1);
-        }
-    }
 }
