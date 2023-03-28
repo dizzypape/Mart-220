@@ -90,6 +90,11 @@ drawAnimation(animationType)
     }
 }
 
+getCurrentAnimation()
+{
+    return this.currentAnimation;
+}
+
 incrementIndex()
 {
     if(this.currentFrameCount % 200 == 0)
