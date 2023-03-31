@@ -1,9 +1,3 @@
-// Daniel Shiffman
-// http://codingtra.in
-
-// Simple Particle System
-// https://youtu.be/UcdigVaIYAk
-
 class Particle
 {
     constructor(x,y)
