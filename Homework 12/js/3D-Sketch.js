@@ -96,7 +96,6 @@ function draw()
     
 }
 
-
 function mouseClicked()
     {
         if (x1 === -200 && x2 === -200) 
