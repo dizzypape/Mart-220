@@ -109,4 +109,6 @@ function mouseClicked()
             x2 = -200;
         }
 
+        ghost1.setX(x1);
+        ghost2.setX(x2);
     }

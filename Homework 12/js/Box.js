@@ -7,6 +7,27 @@ class Box extends threeD
         this.height = height;
     }
 
+    getX()
+    {
+        return this.x;
+    
+    }
+
+    setX(x)
+    {
+        this.x = x;
+    }
+
+    getY()
+    {
+        return this.y;
+    }
+
+    setY(y)
+    {
+        this.y = y;
+    }
+
     draw()
     {
         push();
