@@ -31,7 +31,7 @@ function setup()
     //planet
     planetModel = new Planets(50, -50, 0.02, 0.02, 0.02);
 
-    ball = new Sphere(-250, 160, 0.05, 0.05, 0.05, 45);
+    ball = new Sphere(-250, 160, 0.07, 0.07, 0.07, 45);
     
 }
 
